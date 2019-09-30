@@ -1,0 +1,12 @@
+<form id="add-order-form"  method="post">
+    <legend>New order:</legend>
+    <br>
+    <label for="person-name">Person:</label>
+​    <select name="person-name">
+        {% for person in people_tbl %}
+        <option value="{{ person }}">{{ people_tbl[person] }}</option>
+        {% endfor %}
+    </select>
+​
+    <input id="submit-btn" type="submit" value="Submit">
+</form>
