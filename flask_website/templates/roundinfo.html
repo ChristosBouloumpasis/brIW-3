@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Round in progress</h1><br>
+The legend, {{ people_tbl[roundinfo[1]] }} is making this round!<br>
+<img src="{{ url_for('static', filename='thumbsup.gif') }} "><br>
+<table>
+    <tr>
+      <th>Person</th>
+      <th>Drink</th>
+    </tr>
+    {% for order in orderinfo %}
+        <tr>
+        <td>{{ people_tbl[order[2]] }}</td>
+        <td>{{ drinks_tbl[order[3]] }}</td>
+        </tr>
+    {% endfor %}
+  </table>
+  <br>
+
+  <form id="end-form" method="post" action="/endround">
+      <input id="submit-btn" type="submit" value="End Round">
+  </form>
+
+{% endblock %}

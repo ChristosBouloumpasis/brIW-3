@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+    <head>
+        {% if title %}
+            <title>{{ title }} - BrIW</title>
+        {% else %}
+            <title>BrIW</title>
+        {% endif %}
+    </head>
+    <body>
+        <header>
+            <ul>
+                <a href="/">Home</a>
+                <a href="/add-person">Person</a>
+                <a href="/add-drink">Drink</a>
+                <a href="/add-preference">Preference</a>
+                <a href="/add-order">Order</a>
+                <a href="/round">Round</a>
+            </ul>
+        </header>
+
+        {% block content %}
+        {% endblock %}
+    </body>

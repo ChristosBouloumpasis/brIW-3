@@ -1,14 +1,24 @@
 import pymysql
 from os import environ
+import sys
 
 import subprocess
 
 def mysql_connection():
 # Connect to the database
+    try:
+        password = get_db_pass_from_keychain()
+    except FileNotFoundError:
+        try:
+            password = environ["DB_PASS"]
+        except KeyError:
+            print("Cannot find password for db. Exiting")
+            sys.exit(1)
+
     connection = pymysql.connect(
         host=environ.get("ACAD_SQL_HOST"),
         user=environ.get("ACAD_SQL_USER"),
-        password=get_db_pass_from_keychain(),
+        password=password,
         db=environ.get("ACAD_SQL_USER"),
         autocommit=True)
     return connection

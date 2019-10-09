@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Round Ended</h1><br>
+<h2>{{ people_tbl[roundinfo[1]] }} time to get brewing!</h2> 
+<br>
+<img src="{{ url_for('static', filename='pintpour.gif') }} "><br>
+<p>Please brew the following: </p>
+<table>
+    <tr>
+      <th>Person</th>
+      <th>Drink</th>
+    </tr>
+    {% for order in orderinfo %}
+        <tr>
+        <td>{{ people_tbl[order[2]] }}</td>
+        <td>{{ drinks_tbl[order[3]] }}</td>
+        </tr>
+    {% endfor %}
+  </table>
+  <br>
+
+{% endblock %}

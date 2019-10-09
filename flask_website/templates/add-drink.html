@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<form id="add-input-form" method="post">
+        <legend>Add new {{input}}:</legend>
+        <br>
+        <label for="input-name">{{input}}:</label>
+        <input id="input-name" type="text" name="input-name" />
+    ​
+        <input id="submit-btn" type="submit" value="Submit">
+    </form>
+    <p id="input-error-msg" style="display: none; color: red;">Input error - try again</p>
+{% endblock %}

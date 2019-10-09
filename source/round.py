@@ -9,9 +9,18 @@ class Round:
 
     def add_person(self, person):
         people_ids_list += person
+
+    def add_id(self, id):
+        self.id = id
     
     def remove_person_round(self, person):
         people_ids_list.remove(person)
-
-    def get_all_data(self):
-        return [self.id, self.maker, self.people_ids_list, self.active]
+    
+    def get_maker(self):
+        return self.maker
+    
+    def get_orders(self):
+        return self.people_ids_list
+    
+    def get_status(self):
+        return self.active

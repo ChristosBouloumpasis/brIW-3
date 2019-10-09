@@ -1,12 +1,20 @@
+
 {% extends "base.html" %}
 {% block content %}
 <form id="add-order-form"  method="post">
-    <legend>New order:</legend>
+    <legend>Modify preference:</legend>
     <br>
     <label for="person-name">Person:</label>
 ​    <select name="person-name">
         {% for person in people_tbl %}
         <option value="{{ person }}">{{ people_tbl[person] }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <label for="drink-name">Drink:</label>
+​    <select name="drink-name">
+        {% for drink in drinks_tbl %}
+        <option value="{{ drink }}">{{ drinks_tbl[drink] }}</option>
         {% endfor %}
     </select>
 ​
