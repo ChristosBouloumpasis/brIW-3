@@ -6,18 +6,20 @@
 <br>
 <img src="{{ url_for('static', filename='pintpour.gif') }} "><br>
 <p>Please brew the following: </p>
-<table>
-    <tr>
-      <th>Person</th>
-      <th>Drink</th>
-    </tr>
-    {% for order in orderinfo %}
+
+<div class="table">
+    <table>
         <tr>
-        <td>{{ people_tbl[order[2]] }}</td>
-        <td>{{ drinks_tbl[order[3]] }}</td>
+          <th>Person</th>
+          <th>Drink</th>
         </tr>
-    {% endfor %}
-  </table>
-  <br>
+        {% for order in orderinfo %}
+            <tr>
+            <td>{{ people_tbl[order[2]] }}</td>
+            <td>{{ drinks_tbl[order[3]] }}</td>
+            </tr>
+        {% endfor %}
+      </table>
+</div>
 
 {% endblock %}

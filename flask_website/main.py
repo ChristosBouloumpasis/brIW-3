@@ -64,25 +64,27 @@ def submit_order():
 
     return render_template("ordercomplete.html", title="Posted", people_tbl=people_tbl, preferences_tbl=preferences_tbl, drinks_tbl=drinks_tbl, person=int(person_id))
 
-@app.route('/add-drink', methods=['GET', 'POST'])
+@app.route('/drinks', methods=['GET', 'POST'])
 def new_drink():
+    drinks_tbl = get_drinks_dict()
     if request.method == "GET":
-        return render_template('add-drink.html', title="Create drink", input="Drink")
+        return render_template('add-item.html', title="Drinks", input="Drink", tabledata=drinks_tbl.items())
 
     elif request.method == "POST":
         drink_name = request.form.get("input-name")
         add_drink(drink_name)
-        return render_template("drinkcomplete.html", title="Posted", input=drink_name)
+        return render_template("itemcomplete.html", title="Posted", input=drink_name)
 
-@app.route('/add-person', methods=['GET', 'POST'])
+@app.route('/people', methods=['GET', 'POST'])
 def new_person():
+    people_tbl = get_people_dict()
     if request.method == "GET":
-        return render_template('add-drink.html', title="Create person", input="Person")
+        return render_template('add-item.html', title="People", input="Person", tabledata=people_tbl.items())
 
     elif request.method == "POST":
         person_name = request.form.get("input-name")
         add_person(person_name)
-        return render_template("drinkcomplete.html", title="Posted", input=person_name)
+        return render_template("itemcomplete.html", title="Posted", input=person_name)
 
 @app.route('/add-preference', methods=['GET', 'POST'])
 def update_preference():
@@ -111,7 +113,7 @@ def get_round_info():
     round_id = get_active_round_id()
 
     if round_id == 0:
-        return render_template('error.html', title="Error", error="A round doesn't exist.")
+        return render_template('noround.html', title="No Round")
 
     else:
         round_id = get_active_round_id()

@@ -1,23 +1,50 @@
 
 {% extends "base.html" %}
 {% block content %}
-<form id="add-order-form"  method="post">
-    <legend>Modify preference:</legend>
-    <br>
-    <label for="person-name">Person:</label>
-​    <select name="person-name">
-        {% for person in people_tbl %}
-        <option value="{{ person }}">{{ people_tbl[person] }}</option>
-        {% endfor %}
-    </select>
-    <br>
-    <label for="drink-name">Drink:</label>
-​    <select name="drink-name">
-        {% for drink in drinks_tbl %}
-        <option value="{{ drink }}">{{ drinks_tbl[drink] }}</option>
-        {% endfor %}
-    </select>
-​
-    <input id="submit-btn" type="submit" value="Submit">
-</form>
+
+<div class="row">
+
+    <div class="col-6 offset-2">
+            <div class="table">
+                    <h1>{{ input }}</h1><br>
+
+                    <table>
+                        <tr>
+                        <th>ID</th>
+                        <th>{{ input }}</th>
+                        </tr>
+                        {% for item in tabledata %}
+                            <tr>
+                            <td>{{ item[0] }}</td>
+                            <td>{{ item[1] }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                    <br>
+            </div>
+        </div>
+    </div>
+    <div>
+        <form id="add-order-form"  method="post">
+            <legend>Modify preference:</legend>
+            <br>
+            <label for="person-name">Person:</label>
+        ​    <select name="person-name">
+                {% for person in people_tbl %}
+                <option value="{{ person }}">{{ people_tbl[person] }}</option>
+                {% endfor %}
+            </select>
+            <br>
+            <label for="drink-name">Drink:</label>
+        ​    <select name="drink-name">
+                {% for drink in drinks_tbl %}
+                <option value="{{ drink }}">{{ drinks_tbl[drink] }}</option>
+                {% endfor %}
+            </select>
+        ​
+            <input id="submit-btn" type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+
 {% endblock %}
