@@ -14,38 +14,41 @@ class SingleHandler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         self._set_headers()
+        try:
+            if self.path == '/':
+                goodbye = ("HA nice try")
+                jd = json.dumps(goodbye)
+                self.wfile.write(jd.encode('utf-8'))
 
-        if self.path == '/':
-            goodbye = ("HA nice try")
-            jd = json.dumps(goodbye)
-            self.wfile.write(jd.encode('utf-8'))
+            if self.path == '/people':
+                people = populate_dict_from_db('people_tbl')
+                jd = json.dumps(people)
+                print(jd)
+                self.wfile.write(jd.encode('utf-8'))
 
-        if self.path == '/people':
-            people = populate_dict_from_db('people_tbl')
-            jd = json.dumps(people)
-            print(jd)
-            self.wfile.write(jd.encode('utf-8'))
+            if self.path == '/people/preferences':
+                preferences_readable = {}
+                preferences = populate_dict_from_db('preferences_tbl')
 
-        if self.path == '/people/preferences':
-            preferences_readable = {}
-            preferences = populate_dict_from_db('preferences_tbl')
+                for key, value in preferences.items():
+                    person_name = people_tbl[key]
+                    drink_name = drinks_tbl[value]
 
-            for key, value in preferences.items():
-                person_name = people_tbl[key]
-                drink_name = drinks_tbl[value]
+                preferences_readable[person_name] = drink_name
 
-            preferences_readable[person_name] = drink_name
-
-            jd = json.dumps(preferences_readable)
-            print(jd)
-            self.wfile.write(jd.encode('utf-8'))
+                jd = json.dumps(preferences_readable)
+                print(jd)
+                self.wfile.write(jd.encode('utf-8'))
 
 
-        if self.path == '/drinks':
-            drinks = populate_dict_from_db('drinks_tbl')
-            jd = json.dumps(drinks)
-            print(jd)
-            self.wfile.write(jd.encode('utf-8'))
+            if self.path == '/drinks':
+                drinks = populate_dict_from_db('drinks_tbl')
+                jd = json.dumps(drinks)
+                print(jd)
+                self.wfile.write(jd.encode('utf-8'))
+        except Exception as err: 
+            print("Error")
+            print(err)
 
 
     def do_POST(self):
